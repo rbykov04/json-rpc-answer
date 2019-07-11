@@ -4,5 +4,36 @@
 # json-rpc-answer
 jsonrpc middleware for browsersync
 
+
+# Usage
+## Gulp and browser sync
+
+```js
+
+const browserSync = require('browser-sync').create();
+const jsonrpc = require('../../index.js');
+
+function browser_sync() {
+	browserSync.init({
+		server: {
+			baseDir: "./public"
+		},
+		middleware: [
+			jsonrpc.browser_sync_middleware('/jsonrpc', {
+				test: function(params){
+					return 10;
+				},
+				echo: function(params){
+					return params;
+				},
+			})
+		]
+	});
+};
+```
+
+See alos examples.
 [license-image]: https://img.shields.io/badge/license-MIT-blue.svg
 [license-url]: LICENSE
+
+
